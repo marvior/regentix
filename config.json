@@ -1,0 +1,23 @@
+[
+    
+    {
+    "server_name":"filesystem",
+    "command":"npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", ""],
+    "env":{}
+    },
+    {
+    "server_name": "commands",
+    "command": "npx",
+    "args": ["-y", "mcp-server-fetch-typescript"],
+    "env": {}
+    },
+    {
+    "server_name": "github",
+    "command": "npx",
+    "args": [
+      "-y",
+        "@modelcontextprotocol/server-github"],
+    "env": {}
+    }
+]

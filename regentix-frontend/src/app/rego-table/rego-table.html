@@ -1,0 +1,98 @@
+<div style="border: 1px solid #ccc; padding: 20px; border-radius: 8px; background: #fff; 
+            width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; box-sizing: border-box;">
+  
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h3 style="margin: 0; color: #333; font-family: sans-serif;">Generate rules with AI and save</h3>
+    <button (click)="caricaConfigurazione()" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      🔄 Load JSON file
+    </button>
+  </div>
+
+  <div *ngIf="rows.length === 0" style="padding: 15px; background: #e2f0d9; color: #385723; border-radius: 4px; margin-bottom: 15px; font-family: sans-serif;">
+    Generazione della lista metodi in corso o server non in ascolto. Premi il pulsante sopra per riprovare.
+  </div>
+
+  <div style="overflow-x: auto; width: 100%; border: 1px solid #dee2e6; border-radius: 4px; box-sizing: border-box;">
+    
+    <table *ngIf="rows.length > 0" style="width: 100%; min-width: 1400px; border-collapse: collapse; text-align: left; table-layout: fixed; font-family: sans-serif;">
+      <thead>
+        <tr style="background: #343a40; color: white;">
+          <th style="padding: 12px 10px; border: 1px solid #dee2e6; width: 140px;">Server Name</th>
+          <th style="padding: 12px 10px; border: 1px solid #dee2e6; width: 140px;">Methods</th>
+          <th style="padding: 12px 10px; border: 1px solid #dee2e6; width: 180px;">Description</th>
+          <th style="padding: 12px 10px; border: 1px solid #dee2e6; width: 200px;">Arguments</th>
+          <th style="padding: 12px 10px; border: 1px solid #dee2e6; width: 280px;">Prompt</th>
+          <th style="padding: 12px 10px; border: 1px solid #dee2e6; text-align: center; width: 100px;">Action</th>
+          <th style="padding: 12px 10px; border: 1px solid #dee2e6; width: 280px;">Answer AI</th>
+          <th style="padding: 12px 10px; border: 1px solid #dee2e6; text-align: center; width: 80px;">Save</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of rows; let i = index" style="border-bottom: 1px solid #dee2e6; background: #fff;">
+          <td style="padding: 10px; font-weight: bold; color: #0056b3; border: 1px solid #dee2e6; word-break: break-word;">
+            {{ row.server_name || 'N/D' }}
+          </td>
+          <td style="padding: 10px; font-weight: bold; color: #0056b3; border: 1px solid #dee2e6; word-break: break-word;">
+            {{ row.metodo }}
+          </td>
+          <td style="padding: 10px; color: #333; border: 1px solid #dee2e6; word-break: break-word; font-size: 13px;">
+            {{ row.description }}
+          </td>
+          <td style="padding: 10px; font-family: monospace; font-size: 12px; color: #e83e8c; border: 1px solid #dee2e6; word-break: break-all; vertical-align: top;">
+            {{ row.parametri | json }}
+          </td>
+          
+          <td style="padding: 10px; border: 1px solid #dee2e6; vertical-align: middle;">
+            <div style="position: relative; display: flex; align-items: center;">
+              <input type="text" [(ngModel)]="row.userPrompt" placeholder="es: crea una regola per..." style="width: 100%; padding: 8px 30px 8px 6px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+              <button type="button" (click)="activeModal = {row: row, field: 'userPrompt', title: 'Edit Prompt - ' + row.metodo}" style="position: absolute; right: 5px; background: transparent; border: none; cursor: pointer; font-size: 14px;">🔍</button>
+            </div>
+          </td>
+
+          <td style="padding: 10px; text-align: center; border: 1px solid #dee2e6; vertical-align: middle;">
+            <button (click)="eseguiAI(row, i)" [disabled]="row.isLoading" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">
+              {{ row.isLoading ? '...' : 'Generate' }}
+            </button>
+          </td>
+
+          <td style="padding: 10px; border: 1px solid #dee2e6; vertical-align: middle;">
+            <div style="position: relative;">
+              <textarea [(ngModel)]="row.aiResult" style="width: 100%; height: 120px; font-family: 'Courier New', monospace; font-size: 12px; background: #f8f9fa; border: 1px solid #ccc; border-radius: 4px; resize: vertical; box-sizing: border-box; display: block; padding-bottom: 25px;"></textarea>
+              <button type="button" (click)="activeModal = {row: row, field: 'aiResult', title: 'Edit Answer AI - ' + row.metodo}" style="position: absolute; bottom: 5px; right: 5px; background: #e9ecef; border: 1px solid #ced4da; border-radius: 3px; padding: 2px 6px; cursor: pointer; font-size: 11px; font-family: sans-serif;">Enlarge ⛶</button>
+            </div>
+          </td>
+
+          <td style="padding: 10px; text-align: center; border: 1px solid #dee2e6; vertical-align: middle;">
+            <button 
+              (click)="salvaRego(row)" 
+              [disabled]="!row.aiResult || row.aiResult === 'Generating...' || row.isLoading" 
+              style="padding: 8px 0; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; width: 100%;">
+              Save
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="activeModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; justify-content: center; align-items: center;">
+    <div style="background: white; width: 70vw; height: 70vh; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-family: sans-serif;">
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <h4 style="margin: 0; color: #333;">{{ activeModal.title }}</h4>
+        <button (click)="activeModal = null" style="background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">Close ✕</button>
+      </div>
+
+      <textarea 
+        [(ngModel)]="activeModal.row[activeModal.field]" 
+        style="flex: 1; width: 100%; padding: 15px; font-family: 'Courier New', monospace; font-size: 15px; border: 1px solid #ccc; border-radius: 4px; resize: none; box-sizing: border-box; line-height: 1.5;">
+      </textarea>
+      
+      <div style="display: flex; justify-content: flex-end; margin-top: 15px;">
+        <button (click)="activeModal = null" style="background: #28a745; color: white; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">Update</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

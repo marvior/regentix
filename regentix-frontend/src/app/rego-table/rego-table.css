@@ -1,0 +1,8 @@
+.text-monospace {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+}
+
+code {
+  color: #e83e8c;
+}
