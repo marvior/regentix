@@ -43,7 +43,7 @@ The system combines:
 ---
 
 ## 🏗️ Architecture
-
+```text
                     ┌──────────────────────┐
                     │   Claude Desktop     │
                     │   (MCP Client)       │
@@ -60,6 +60,7 @@ The system combines:
                         ▼
         ┌──────────────────────────────────────┐
         │   Regorus Policy Engine (Rego)       │
+        │   - Allow / Deny decisions           │
         └─────────┬────────────────────────────┘
                   │
         ┌─────────┴─────────┐
@@ -68,19 +69,23 @@ The system combines:
         ▼                   ▼
 ┌────────────────┐   ┌────────────────────┐
 │ MCP Servers    │   │ Blocked Execution  │
+│ (Git, FS, etc) │   │ Request rejected   │
 └────────────────┘   └────────────────────┘
+
 
         ┌──────────────────────────────────────┐
         │ Python AI Backend                    │
-        │ - Qwen2.5-Coder fine-tuning         │
+        │ - Fine-tuned Qwen2.5-Coder          │
         │ - Generates Rego policies           │
         │ - Uses Gemini synthetic dataset      │
         └─────────┬────────────────────────────┘
                   │
+                  │ policy generation API
                   ▼
         ┌──────────────────────────────────────┐
         │ Angular Web Dashboard                │
-        │ - Policy creation UI                │
+        │ - UI for policy creation             │
+        │ - Sends requests to backend          │
         └──────────────────────────────────────┘
 
 ---
