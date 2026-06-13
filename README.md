@@ -102,7 +102,18 @@ The system combines:
 6. Angular UI manages rule creation
 
 ---
+VIDEO DEMO
 
+
+
+
+<video src="https://github.com/user-attachments/assets/04f2f054-abba-4ca0-a654-a536bcf4168c" width="600" controls></video>
+
+
+
+
+
+---
 ## 🧠 AI Policy Generation
 
 - Base model: Qwen2.5-Coder-1.5B-Instruct  
