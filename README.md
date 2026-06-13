@@ -175,11 +175,12 @@ http://localhost:4200/
 ## 🔌 Claude Desktop Config
 
 {
+  {
   "mcpServers": {
     "regentix": {
-      "command": "./rust-proxy/target/release/regentix-proxy"
-    }
-  }
+      "command": "//Users/waltermolino/rustProjects/regentix/regentix",
+      "args": []
+}
 }
 
 ---
