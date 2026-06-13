@@ -102,14 +102,6 @@ The system combines:
 6. Angular UI manages rule creation
 
 ---
-VIDEO DEMO
-
-
-
-[Click here to watch Regentix demo](https://github.com/user-attachments/assets/bcddb37d-9a1f-4fc2-943f-96b23036d395)
-
-
-
 
 
 
