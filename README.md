@@ -3,7 +3,7 @@
 > **Policy-driven MCP proxy for secure LLM tool execution using Rego-based governance and AI-generated rules**
 
 ![Status](https://img.shields.io/badge/status-experimental-orange)
-![License](https://img.shields.io/badge/license-MIT-blue)
+![License](https://img.shields.io/badge/license-APACHE-blue)
 ![Architecture](https://img.shields.io/badge/architecture-multi--layer-lightgrey)
 
 ---
