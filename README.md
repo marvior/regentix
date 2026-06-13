@@ -111,7 +111,7 @@ VIDEO DEMO
 
 
 
-<video src="https://github.com/user-attachments/assets/bcddb37d-9a1f-4fc2-943f-96b23036d395" controls="controls" style="max-width: 730px;"></video>
+[![Regentix Demo]](https://github.com/user-attachments/assets/bcddb37d-9a1f-4fc2-943f-96b23036d395)
 
 
 
