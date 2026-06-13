@@ -178,7 +178,7 @@ http://localhost:4200/
   {
   "mcpServers": {
     "regentix": {
-      "command": "//Users/waltermolino/rustProjects/regentix/regentix",
+      "command": "<path whereis you regentix rust executable code>",
       "args": []
 }
 }
