@@ -107,7 +107,7 @@ VIDEO DEMO
 
 
 
-![](https://github.com/user-attachments/assets/04f2f054-abba-4ca0-a654-a536bcf4168c)
+<video src="https://github.com" controls width="100%"></video>
 
 
 
