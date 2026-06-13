@@ -227,6 +227,3 @@ OPA / Regorus / Qwen / Gemini / Claude MCP
 
 ---
 
-## 📄 License
-
-MIT
