@@ -106,8 +106,7 @@ VIDEO DEMO
 
 
 
-### 🎥 Video Demo
-[▶️ Clicca qui per guardare la demo di Regentix](https://github.com/user-attachments/assets/bcddb37d-9a1f-4fc2-943f-96b23036d395)
+[Click here to watch Regentix demo](https://github.com/user-attachments/assets/bcddb37d-9a1f-4fc2-943f-96b23036d395)
 
 
 
