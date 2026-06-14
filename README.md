@@ -84,8 +84,8 @@ The system combines:
 
         ┌──────────────────────────────────────┐
         │ Python AI Backend                    │
-        │ - Fine-tuned Qwen2.5-Coder          │
-        │ - Generates Rego policies           │
+        │ - Fine-tuned Qwen2.5-Coder           │
+        │ - Generates Rego policies            │
         │ - Uses Gemini synthetic dataset      │
         └─────────┬────────────────────────────┘
                   │
