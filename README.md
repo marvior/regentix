@@ -1,13 +1,19 @@
 # 🧠 Regentix
 
-> **Policy-driven MCP proxy for secure LLM tool execution using Rego-based governance and AI-generated rules**
+
+
+> **Policy-driven MCP proxy for secure LLM tool execution using Rego-based governance with local AI-generated rules**
 
 ![Status](https://img.shields.io/badge/status-experimental-orange)
 ![License](https://img.shields.io/badge/license-APACHE-blue)
 ![Architecture](https://img.shields.io/badge/architecture-multi--layer-lightgrey)
 
 ---
+> **Video Demo**
 
+https://github.com/user-attachments/assets/96fb1d40-00f8-4c03-903d-3b5e13af454e
+
+---
 ## 📌 Overview
 
 **Regentix** is a security and governance system that sits between LLM clients (like Claude Desktop) and MCP (Model Context Protocol) servers.
@@ -87,7 +93,7 @@ The system combines:
         │ - UI for policy creation             │
         │ - Sends requests to backend          │
         └──────────────────────────────────────┘
-
+```
 ---
 
 
@@ -104,8 +110,6 @@ The system combines:
 6. Angular UI manages rule creation
 
 ---
-
-
 
 
 ---
@@ -144,9 +148,10 @@ Capabilities:
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started 
 
-### Rust MCP Proxy
+### Rust Compiling
+Alternative compiling:
 ./deploy_build_rust.sh
 ./deploy_release_rust.sh
 
@@ -160,9 +165,12 @@ python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
+### Fine tuning model
+
 cd model_ai/rego-finetuning
 ./start.sh
 
+### Start Python Backend
 cd model_ai/
 python start_server.py
 
@@ -219,17 +227,16 @@ All actions must be governed
 
 ## 📌 Future Work
 
-- Multi-tenant policies
-- Distributed evaluation
-- Audit logs
-- Graph visualization
-- Plugin system
+- Improved Rego rule synthesis
+- HTTP transport support (not only STDIN MCP)
+- LLM-agnostic integration layer
+
 
 ---
 
 ## 🤝 Acknowledgements
 
-OPA / Regorus / Qwen / Gemini / Claude MCP
+OPA / Regorus / Qwen / Gemini / Claude MCP / Rust / Python / Angular
 
 ---
 
