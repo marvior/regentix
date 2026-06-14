@@ -9,6 +9,9 @@
 ![Architecture](https://img.shields.io/badge/architecture-multi--layer-lightgrey)
 
 ---
+> ⚠️ **Warning**  
+> This project is in early development and is not production-ready. It may contain bugs, incomplete features, or breaking changes. Use at your own risk.
+---
 > **Video Demo**
 
 https://github.com/user-attachments/assets/96fb1d40-00f8-4c03-903d-3b5e13af454e
@@ -196,6 +199,34 @@ http://localhost:4200/
       "args": []
 }
 }
+
+## 🔌 Config.json
+In this file add the mcp server 
+for example:
+[
+    
+    {
+    "server_name":"filesystem",
+    "command":"npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", ""],
+    "env":{}
+    },
+    {
+    "server_name": "commands",
+    "command": "npx",
+    "args": ["-y", "mcp-server-fetch-typescript"],
+    "env": {}
+    },
+    {
+    "server_name": "github",
+    "command": "npx",
+    "args": [
+      "-y",
+        "@modelcontextprotocol/server-github"],
+    "env": {}
+    }
+]
+
 
 ---
 
