@@ -169,6 +169,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 ### Fine tuning model
+for the fune tuning I've used the M4 Air
 
 cd model_ai/rego-finetuning
 ./start.sh
